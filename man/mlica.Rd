@@ -41,7 +41,11 @@ mlica(prNCP, nruns = 10, tol = 1e-04, maxit = 300, fail.th = 5, learn.mu = 1)
     Independent Component Analysis of Expression Ratios from DNA
     microarrays}, Comparative and Functional Genomics \bold{4} (3),300--317.}
   \item{3}{Liebermeister W. (2002): \emph{Linear Modes of gene
-      expression determined by independent component analysis}, Bioinformatics \bold{18}, no.1, 51--60.}
+      expression determined by independent component analysis},
+    Bioinformatics \bold{18}, no.1, 51--60.}
+  \item{4}{Chiappetta P., Roubaud MC. and Torresani B.: \emph{Blind
+      source separation and the analysis of microarray data},
+    J. Comput. Biol. 2004; 11(6):1090--109.}
 }
 
 \examples{
@@ -55,9 +59,9 @@ prNCP <- proposeNCP(prPCA,0.1);
 % Multiple repeated runs to check stability of best inferred runs
 a.best.l <- list();
 for( i in 1:5){
- % selecting the best out of nruns runs
- a.best.l[[i]] <- mlica(prNCP,nruns=10);
+ a.best.l[[i]] <- mlica(prNCP,nruns=5);
 }
+% selecting the best out of nruns runs
 % checking stability of best runs.
 checkICA <- CheckStability(a.best.l,0.7);
 % checking inferred ICA modes
