@@ -68,7 +68,7 @@ checkICA <- CheckStability(a.best.l,0.7);
 sourceS <- simMAdata[[3]];
 print(cor(a.best.l[[1]]$S,sourceS));
 % Sort modes
-sModes <- SortModes(a.best.l[[1]],prNCP,c.val=0.5);
+sModes <- SortModes(a.best.l[[1]],c.val=0.5);
 }
 \keyword{cluster}% at least one, from doc/KEYWORDS
 

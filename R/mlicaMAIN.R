@@ -98,9 +98,7 @@ function(prNCP, tol=0.0001, maxit=300, mu=1){# default values
     Sest[g,] <- B %*% x[g,] ;
   }
   
-  Binv <- solve(B);
-  Aest <- pEx %*% Binv ; # this is now estimate of original mixing matrix, Ns x ncp matrix
-
+  Aest <- t(pEx %*% sqrt(pCorr) %*% t(B)) ; # this is now estimate of original mixing matrix, Ns x ncp matrix
   if ( length(not.conv) > 0 ){
     NotConv <- 1 ;
   }
@@ -109,9 +107,7 @@ function(prNCP, tol=0.0001, maxit=300, mu=1){# default values
   # logL computation
   logL <- -2*sum( log( cosh(Sest) ) ) + ntp*log(abs(det(B)));
 
-  # BIC value
-  #BIC <- logL - 0.5*0.5*(ncp-1)*ncp*log(ndim);
 
-  return(list(A=t(Aest),B=B,S=Sest,X=X,ncp=dim(Sest)[2],NC=NotConv,LL=logL));
+  return(list(A=Aest,B=B,S=Sest,X=X,ncp=dim(Sest)[2],NC=NotConv,LL=logL));
 
 } # end of function
