@@ -5,4 +5,5 @@ PriorNormPCA            Prior PCA analysis for threshold setting and
                         noise removal
 proposeNCP              Number of independent components proposal
                         function
+simMAdata               Simulated Microarray data for testing purposes
 SortModes               Sorting of ICA modes

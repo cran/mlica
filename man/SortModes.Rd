@@ -8,11 +8,12 @@
  linear combination of non-gaussianity and data variance measures.
 }
 \usage{
-SortModes(a.best, c.val = 0.25)
+SortModes(a.best, prNCP, c.val = 0.25)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{a.best}{The output object of \code{mlica}.}
+  \item{prNCP}{The output object of \code{proposeNCP}.}
   \item{c.val}{A parameter to control the relative weight of the two
     measures when using the Liebermeister criterion. Should be between 0
     (pure data variance measure) and 1 (pure non-gaussianity).

@@ -1,14 +1,20 @@
 "SortModes" <-
-function(a.best,c.val=0.25){
+function(a.best,prNCP,c.val=0.25){
   
 ncp <- ncol(a.best$S);
 Ng <- nrow(a.best$S);
+
+pCorr <- prNCP$pCorr ; # need to scale back
+tmpA <- a.best$A;
+for( c in 1:ncp){
+  tmpA[c,] <- sqrt(diag(pCorr)[c])*a.best$A[c,];
+}
 
 #SORTING CRITERION
 
 # A) Computation of relative data power. Store values in vector of size H=ncp. Could use different criterion here.
 # need squared entries
- Ssq <- a.best$S * a.best$S ; Asq <- a.best$A * a.best$A ;
+ Ssq <- a.best$S * a.best$S ; Asq <- tmpA * tmpA ;
  Xsq <- a.best$X * a.best$X ;
  rdp <- rep(0, times=ncp);
  for ( k in 1:ncp ) {
@@ -20,8 +26,8 @@ Ng <- nrow(a.best$S);
 # B) sorting with mixture of contrast and data variance (Liebermeister)
  JG <- rep(0, times=ncp);
  JA <- rep(0, times=ncp);
- # generate Ng values of std. normal distribution
- nu <- rnorm(Ng,0,1);
+ # generate values from std. normal distribution
+ nu <- rnorm(10000,0,1);
  G0 <- mean(log(cosh(nu)));
  
  for ( k in 1:ncp ){
