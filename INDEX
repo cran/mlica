@@ -1,0 +1,8 @@
+CheckStability          Tests stability of inferred ICA modes.
+mlica                   Maximum likelihood implementation of
+                        Independent Component Analysis
+PriorNormPCA            Prior PCA analysis for threshold setting and
+                        noise removal
+proposeNCP              Number of independent components proposal
+                        function
+SortModes               Sorting of ICA modes
