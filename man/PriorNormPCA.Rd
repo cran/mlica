@@ -28,8 +28,6 @@ PriorNormPCA(X)
   number of samples.}
 \value{A list with following components:
   \item{X}{Normalised data matrix with the mean of each column set to zero.}
-  \item{corr}{Correlation/Covariance data matrix.}
-  \item{eig}{Eigenvalue decomposition of Correlation/Covariance matrix.}
   \item{Dx}{Eigenvalues in a diagonal matrix.}
   \item{Ex}{Eigenvectors}
 }

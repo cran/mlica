@@ -1,17 +1,17 @@
 "proposeNCP" <-
 function(prPCA, thresh=0.1){ # START FUNCTION
 
-  eig <- prPCA$eig ;
   X <- prPCA$X ;
+  eigenvals.v <- diag(prPCA$Dx);
   Ex <- prPCA$Ex ;
   ntp <- nrow(X);
   ndim <- ncol(X);
 
   print("About to find ncp");
   # project onto relevant eigendirections
-  p.cpts <- eig$values[ eig$values > thresh ];
+  p.cpts <- eigenvals.v[eigenvals.v > thresh ];
   ncp <- length(p.cpts);
-  pCorr <- diag( eig$values[1:ncp] );
+  pCorr <- diag( eigenvals.v[1:ncp] );
   pEx <- Ex[,1:ncp]; # this is Nsamples x ncp projection matrix
   
   x <- matrix(nrow=ntp,ncol=ncp); # is white
@@ -21,9 +21,6 @@ function(prPCA, thresh=0.1){ # START FUNCTION
    }
   }
 
-
-
   return(list(X=X,x=x,pEx=pEx,pCorr=pCorr,ncp=ncp));
-  
 
 } # END FUNCTION

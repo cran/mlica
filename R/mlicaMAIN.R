@@ -57,7 +57,6 @@ function(prNCP, tol=0.0001, maxit=300, mu=1){# default values
    tmp <- diag(beta) + tmp ;
    B <- B.old + mu*diag(alpha) %*% tmp %*% B.old ;
 
-
    # Check convergence
    Dev <- abs(B - B.o);
    AvDev <- sum(Dev)/(ncp*ncp);
