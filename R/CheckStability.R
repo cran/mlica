@@ -1,8 +1,7 @@
 "CheckStability" <-
 function(a.best.l, corr.th=0.7){
-
+  
   nIruns <- length(a.best.l) ;
-
   if( nIruns < 2 ){
     print("Argument must be list of at least two a.best objects");
     stop;
@@ -25,13 +24,11 @@ function(a.best.l, corr.th=0.7){
   for( j2 in selrun ){
 
     for( i1 in 1:ncp){
-      for( i2 in 1:ncp){
 
-        if( abs(cor(a.best.l[[j1]]$S[,i1], a.best.l[[j2]]$S[,i2])) > corr.th ){
-          Adj.a[j1,i1,j2,i2] <- 1 ;
-        }
+      cor.v <- as.vector(abs(cor(a.best.l[[j1]]$S[,i1],a.best.l[[j2]]$S)));
+      which.max(cor.v) -> i2;
+      Adj.a[j1,i1,j2,i2] <- 1 ;
 
-      }
     }
   }
 
@@ -45,14 +42,12 @@ function(a.best.l, corr.th=0.7){
     nConn.v[v] <- nConn ;
     v <- v + 1;
   }
-}
-
+ } # j1-loop
 
  selmodes.idx <- 1:(nIruns*ncp);
  consS.lv <- list();
  StabScore.l <- list();
  c <- 1;
-
  while( c <= ncp ){
  which.max(nConn.v) -> max.idx ;
  as.integer(max.idx/(ncp+1))+1 -> j1.max ;
@@ -62,7 +57,7 @@ function(a.best.l, corr.th=0.7){
  corr.idx <- vector();
  for( j2 in selrun ){
    which(Adj.a[j1.max,i1.max,j2,]==1) -> i2;
-   if ( is.na(i2)==FALSE ){
+   if ( length(i2) > 0 ){
     corr.idx <- c(corr.idx, (j2-1)*ncp+i2);
     tmp <- cor(a.best.l[[j1.max]]$S[,i1.max],a.best.l[[j2]]$S[,i2]);
     consS <- consS + sign(tmp)*a.best.l[[j2]]$S[,i2];

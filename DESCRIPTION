@@ -1,6 +1,6 @@
 Package: mlica
 Title: Independent Component Analysis using Maximum Likelihood
-Version: 0.3
+Version: 0.4
 Author: Andrew Teschendorff
 Description: An R code implementation of the maximum likelihood (fixed point) algorithm of Hyvaerinen, Karhuna and Oja for independent component analysis.
 Maintainer: Andrew Teschendorff  <aet21@hutchison-mrc.cam.ac.ac>
